@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token-based Login</title>
+    <title>Login based on URL Token</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,7 +55,7 @@
 <body>
 
 <div id="login-container">
-    <h1>Token-based Login</h1>
+    <h1>Login based on URL Token</h1>
     <form id="login-form">
         <button type="button" onclick="attemptLogin()">Login</button>
     </form>
@@ -72,20 +72,29 @@
 
     // Function to handle login attempt
     function attemptLogin() {
-        // Simulate server-side token generation upon successful login
-        authToken = generateToken();
+        // Simulate server-side token validation based on URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlToken = urlParams.get('token');
 
-        // Hide login form and display dashboard
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
+        if (validateToken(urlToken)) {
+            authToken = urlToken;
 
-        // Display welcome message
-        document.getElementById("login-status").textContent = "Login Successful!";
+            // Hide login form and display dashboard
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+
+            // Display welcome message
+            document.getElementById("login-status").textContent = "Login Successful!";
+        } else {
+            // Invalid token
+            document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
+        }
     }
 
-    // Function to generate a simple token (replace with your actual token generation logic)
-    function generateToken() {
-        return Math.random().toString(36).substring(2);
+    // Function to validate the token (replace with your actual token validation logic)
+    function validateToken(token) {
+        // Simulate token validation (in a real-world scenario, this should be done on the server side)
+        return token !== null && token !== undefined && token.trim() !== "";
     }
 
     // Function to handle logout
