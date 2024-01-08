@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="Style/style.css">
+</head>
+<body>
+    <div id="header">
+        <img id="logo" src="Images/Logo/UNIMAP.png">
+        <div id="menu">
+        </div>
+    </div>
+
+    <div id="map-box">
+        <div id="app">
+            <label for="first-menu">Kde sa nachádzam:</label>
+            <select id="first-menu">
+                <option value="1.A">1.A</option>
+                <option value="2.A">2.A</option>
+                <option value="3.A">3.A</option>
+                <option value="4.A">4.A</option>
+                <option value="1.AB">1.AB</option>
+                <option value="1.BB">1.BB</option>
+                <option value="2.AB">2.AB</option>
+                <option value="2.BB">2.BB</option>
+                <option value="3.AB">3.AB</option>
+                <option value="3.BB">3.BB</option>
+                <option value="4.AB">4.AB</option>
+                <option value="4.BB">4.BB</option>
+                <option value="5.AB">5.AB</option>
+                <option value="5.BB">5.BB</option>
+                <option value="1.OA">1.OA</option>
+                <option value="2.OA">2.OA</option>
+                <option value="3.OA">3.OA</option>
+                <option value="4.OA">4.OA</option>
+                <option value="5.OA">5.OA</option>
+                <option value="6.OA">6.OA</option>
+                <option value="7.OA">7.OA</option>
+                <option value="8.OA">8.OA</option>
+                <option value="8.OB">8.OB</option>
+                <option value="VRÁTNICA">VRÁTNICA</option>
+            </select>
+
+            <label for="second-menu">Kde chcem ísť:</label>
+            <select id="second-menu">
+                <option value="1.A">1.A</option>
+                <option value="2.A">2.A</option>
+                <option value="3.A">3.A</option>
+                <option value="4.A">4.A</option>
+                <option value="1.AB">1.AB</option>
+                <option value="1.BB">1.BB</option>
+                <option value="2.AB">2.AB</option>
+                <option value="2.BB">2.BB</option>
+                <option value="3.AB">3.AB</option>
+                <option value="3.BB">3.BB</option>
+                <option value="4.AB">4.AB</option>
+                <option value="4.BB">4.BB</option>
+                <option value="5.AB">5.AB</option>
+                <option value="5.BB">5.BB</option>
+                <option value="1.OA">1.OA</option>
+                <option value="2.OA">2.OA</option>
+                <option value="3.OA">3.OA</option>
+                <option value="4.OA">4.OA</option>
+                <option value="5.OA">5.OA</option>
+                <option value="6.OA">6.OA</option>
+                <option value="7.OA">7.OA</option>
+                <option value="8.OA">8.OA</option>
+                <option value="8.OB">8.OB</option>
+                <option value="VRÁTNICA">VRÁTNICA</option>
+            </select>
+
+            <button onclick="selectImage()">NAVIGUJ</button>
+            
+            <div id="map">
+                <img id="selected-image" src="" alt="VYBER TRASU">
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

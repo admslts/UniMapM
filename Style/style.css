@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#header{
+    background-color: rgb(226, 220, 201);
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 0px 0px 15px 15px;
+}
+
+#logo{
+    width: 80px;
+}
+
+#app {
+    text-align: center;
+    width: 100%;
+}
+
+#map-box{
+    box-sizing: border-box;
+    width: 100%;
+}
+
+select, button {
+    margin: 10px;
+}
+
+#selected-image {
+    max-width: 100%;
+}
+
+#map{
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
