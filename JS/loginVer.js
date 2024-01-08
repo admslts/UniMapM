@@ -1,5 +1,8 @@
     const isLoggedIn = sessionStorage.getItem('loggedIn');
-    setTimeout(window.location.href = "https://admslts.github.io/UniMapM", 10000);
+    setInterval(logOut, 5000);
+    function logOut() {
+        window.location.href = "file:///Users/adam/Desktop/UniMap/Unimap";
+    }
 
     if (!isLoggedIn) {
         window.location.href = "index.html";
