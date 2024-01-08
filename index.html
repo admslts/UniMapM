@@ -66,9 +66,8 @@
         if (urlToken == authToken) {
             sessionStorage.setItem('loggedIn', 'true');
             document.getElementById('login-status').textContent = 'Login Successful!';
-            console.log("ano")
             window.location.href = "https://admslts.github.io/UniMapM/mapa.html";
-            setInterval(signOut, 2000);
+            setInterval(signOut, 10000);
             }
         } else {
             // Invalid token
