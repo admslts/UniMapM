@@ -57,9 +57,7 @@
 
 
     authToken = "unimapko"
-    // Function to handle login attempt
     function attemptLogin() {
-        // Simulate server-side token validation based on URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         const urlToken = urlParams.get('token');
 
@@ -68,7 +66,7 @@
             document.getElementById('login-status').textContent = 'Login Successful!';
             window.location.href = "https://admslts.github.io/UniMapM/mapa.html";
             }
-        } else {
+        else {
             document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
         }
     }
