@@ -67,19 +67,12 @@
             sessionStorage.setItem('loggedIn', 'true');
             document.getElementById('login-status').textContent = 'Login Successful!';
             window.location.href = "https://admslts.github.io/UniMapM/mapa.html";
-            setInterval(signOut, 10000);
             }
         } else {
-            // Invalid token
             document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
         }
     }
 
-    // Function to validate the token (replace with your actual token validation logic)
-    function validateToken(token) {
-        // Simulate token validation (in a real-world scenario, this should be done on the server side)
-        return token !== null && token !== undefined && token.trim() !== "";
-    }
 
     setInterval(attemptLogin, 2000);
     function signOut() {
