@@ -14,7 +14,7 @@
             margin: auto;
             padding: 20px;
             border: 1px solid #ccc;
-            border-radius: 5px; 
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         #login-form {
@@ -46,13 +46,14 @@
     </style>
 </head>
 <body>
-<div id="login-container">
-    <h1>Login based on URL Token</h1>
-    <form id="login-form">
-        <button type="button" onclick="attemptLogin()">Login</button>
-    </form>
-    <p id="login-status"></p>
-</div>
+    <div id="login-container">
+        <h1>Login based on URL Token</h1>
+        <form id="login-form">
+            <!-- Removed the button, as we'll auto-attempt login -->
+        </form>
+        <p id="login-status"></p>
+    </div>
+
 
 <script>
 
@@ -69,7 +70,7 @@
             sessionStorage.setItem('loggedIn', 'true');
             document.getElementById('login-status').textContent = 'Login Successful!';
             // Redirect to mapa.html
-            window.location.href = "mapa.html";
+            window.location.href = "file:///Users/adam/Desktop/UniMap/Unimap/mapa.html";
         } else {
             // Invalid token
             document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
@@ -82,6 +83,7 @@
         return token !== null && token !== undefined && token.trim() !== "";
     }
 
+    setInterval(attemptLogin, 2000);
 
 </script>
 </body>
