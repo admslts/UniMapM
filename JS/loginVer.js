@@ -1,6 +1,6 @@
     const isLoggedIn = sessionStorage.getItem('loggedIn');
+    setTimeout(window.location.href = "https://admslts.github.io/UniMapM", 10000);
 
-    // If not logged in, redirect to the login page
     if (!isLoggedIn) {
         window.location.href = "index.html";
     }
