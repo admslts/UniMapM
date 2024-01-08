@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Login with Username and Password in URL</title>
+    <title>Login based on URL Token</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-
         #login-container {
             max-width: 300px;
             margin: auto;
@@ -18,81 +17,79 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        #dashboard {
-            display: none;
-            margin-top: 20px; 
+        #login-form {
+            display: flex;
+            flex-direction: column;
         }
-
-        #logout-btn {
-            background-color: #f44336;
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+        button {
+            background-color: #4caf50;
             color: white;
             padding: 10px;
             border: none;
             border-radius: 3px;
             cursor: pointer;
         }
+        button:hover {
+            background-color: #45a049;
+        }
+        #dashboard {
+            display: none;
+            margin-top: 20px;
+        }
+        #logout-btn {
+            background-color: #f44336;
+        }
     </style>
 </head>
 <body>
-
 <div id="login-container">
-    <h1>Auto Login with Username and Password in URL</h1>
+    <h1>Login based on URL Token</h1>
+    <form id="login-form">
+        <button type="button" onclick="attemptLogin()">Login</button>
+    </form>
     <p id="login-status"></p>
 </div>
-
 <div id="dashboard">
     <h2>Welcome to the Dashboard!</h2>
     <button id="logout-btn" onclick="logout()">Logout</button>
 </div>
-
 <script>
-    // Function to extract username and password from URL parameters
-    function getCredentialsFromURL() {
+
+
+    authToken = "vrkajerbhewlb63F27IšVB235B237FBG3ľžbýb2623"
+    // Function to handle login attempt
+    function attemptLogin() {
+        // Simulate server-side token validation based on URL parameter
         const urlParams = new URLSearchParams(window.location.search);
-        const username = urlParams.get('username');
-        const password = urlParams.get('password');
-        return { username, password };
-    }
-
-    // Function to perform auto-login based on URL parameters
-    function autoLogin() {
-        const { username, password } = getCredentialsFromURL();
-
-        if (username && password) {
-            // Simulate server-side authentication (replace with your actual authentication logic)
-            if (authenticateUser(username, password)) {
-                // Hide login form and display dashboard
-                document.getElementById("login-container").style.display = "none";
-                document.getElementById("dashboard").style.display = "block";
-
-                // Display welcome message
-                document.getElementById("login-status").textContent = "Login Successful!";
-            } else {
-                // Invalid credentials
-                document.getElementById("login-status").textContent = "Invalid credentials. Login Failed.";
-            }
+        const urlToken = urlParams.get('token');
+        if (validateToken(urlToken)) {
+            authToken = urlToken;
+            // Hide login form and display dashboard
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+            // Display welcome message
+            document.getElementById("login-status").textContent = "Login Successful!";
         } else {
-            // No credentials provided in the URL
-            document.getElementById("login-status").textContent = "No credentials provided.";
+            // Invalid token
+            document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
         }
     }
-
-    // Function to simulate server-side authentication (replace with your actual authentication logic)
-    function authenticateUser(username, password) {
-        // Simulate authentication by checking if the provided credentials are correct
-        return username === "user123" && password === "pass123";
+    // Function to validate the token (replace with your actual token validation logic)
+    function validateToken(token) {
+        // Simulate token validation (in a real-world scenario, this should be done on the server side)
+        return token !== null && token !== undefined && token.trim() !== "";
     }
-
     // Function to handle logout
     function logout() {
-        // Redirect to the login page with a new set of credentials
-        window.location.href = "/login.html?username=newuser&password=newpass";
+        // Clear the token and show the login form
+        authToken = null;
+        document.getElementById("login-container").style.display = "block";
+        document.getElementById("dashboard").style.display = "none";
     }
-
-    // Perform auto-login on page load
-    window.onload = autoLogin;
 </script>
-
 </body>
 </html>
