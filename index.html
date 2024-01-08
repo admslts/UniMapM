@@ -3,80 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login based on URL Token</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #login-container {
-            max-width: 300px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #login-form {
-            display: flex;
-            flex-direction: column;
-        }
-        input {
-            margin-bottom: 10px;
-            padding: 8px;
-        }
-        button {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #dashboard {
-            display: none;
-            margin-top: 20px;
-        }
-        #logout-btn {
-            background-color: #f44336;
-        }
-    </style>
+    <title>Landing Page</title>
 </head>
 <body>
+    <div id="header">
+        <img id="logo" src="Images/Logo/UNIMAP.png">
+        <div id="menu">
+        </div>
+    </div>
+
     <div id="login-container">
-        <h1>Login based on URL Token</h1>
+        <h1>Vitajte v UniMap</h1>
         <form id="login-form"></form>
         <p id="login-status"></p>
     </div>
 
+<script src="JS/login.js"></script>
 
-<script>
-
-
-    authToken = "unimapko"
-    function attemptLogin() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlToken = urlParams.get('token');
-
-        if (urlToken == authToken) {
-            sessionStorage.setItem('loggedIn', 'true');
-            document.getElementById('login-status').textContent = 'Login Successful!';
-            window.location.href = "https://admslts.github.io/UniMapM/mapa.html";
-            }
-        else {
-            document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
-        }
-    }
-
-
-    setInterval(attemptLogin, 2000);
-    function signOut() {
-         window.location.href = "https://admslts.github.io/UniMapM";
-    }
-
-</script>
 </body>
 </html>
