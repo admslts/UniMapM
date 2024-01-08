@@ -1,83 +1,51 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="Style/style.css">
+    <title>Login through Unique Link</title>
 </head>
 <body>
-    <div id="header">
-        <img id="logo" src="Images/Logo/UNIMAP.png">
-        <div id="menu">
-        </div>
-    </div>
 
-    <div id="map-box">
-        <div id="app">
-            <label for="first-menu">Kde sa nachádzam:</label>
-            <select id="first-menu">
-                <option value="1.A">1.A</option>
-                <option value="2.A">2.A</option>
-                <option value="3.A">3.A</option>
-                <option value="4.A">4.A</option>
-                <option value="1.AB">1.AB</option>
-                <option value="1.BB">1.BB</option>
-                <option value="2.AB">2.AB</option>
-                <option value="2.BB">2.BB</option>
-                <option value="3.AB">3.AB</option>
-                <option value="3.BB">3.BB</option>
-                <option value="4.AB">4.AB</option>
-                <option value="4.BB">4.BB</option>
-                <option value="5.AB">5.AB</option>
-                <option value="5.BB">5.BB</option>
-                <option value="1.OA">1.OA</option>
-                <option value="2.OA">2.OA</option>
-                <option value="3.OA">3.OA</option>
-                <option value="4.OA">4.OA</option>
-                <option value="5.OA">5.OA</option>
-                <option value="6.OA">6.OA</option>
-                <option value="7.OA">7.OA</option>
-                <option value="8.OA">8.OA</option>
-                <option value="8.OB">8.OB</option>
-                <option value="VRÁTNICA">VRÁTNICA</option>
-            </select>
+<h1>Login through Unique Link</h1>
 
-            <label for="second-menu">Kde chcem ísť:</label>
-            <select id="second-menu">
-                <option value="1.A">1.A</option>
-                <option value="2.A">2.A</option>
-                <option value="3.A">3.A</option>
-                <option value="4.A">4.A</option>
-                <option value="1.AB">1.AB</option>
-                <option value="1.BB">1.BB</option>
-                <option value="2.AB">2.AB</option>
-                <option value="2.BB">2.BB</option>
-                <option value="3.AB">3.AB</option>
-                <option value="3.BB">3.BB</option>
-                <option value="4.AB">4.AB</option>
-                <option value="4.BB">4.BB</option>
-                <option value="5.AB">5.AB</option>
-                <option value="5.BB">5.BB</option>
-                <option value="1.OA">1.OA</option>
-                <option value="2.OA">2.OA</option>
-                <option value="3.OA">3.OA</option>
-                <option value="4.OA">4.OA</option>
-                <option value="5.OA">5.OA</option>
-                <option value="6.OA">6.OA</option>
-                <option value="7.OA">7.OA</option>
-                <option value="8.OA">8.OA</option>
-                <option value="8.OB">8.OB</option>
-                <option value="VRÁTNICA">VRÁTNICA</option>
-            </select>
+<!-- Display login status -->
+<p id="login-status">Click the link in your email to log in.</p>
 
-            <button onclick="selectImage()">NAVIGUJ</button>
-            
-            <div id="map">
-                <img id="selected-image" src="" alt="VYBER TRASU">
-            </div>
-        </div>
-    </div>
-    
-    <script src="app.js"></script>
+<script>
+    // Function to extract token from URL parameters
+    function getTokenFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('token');
+    }
+
+    // Function to perform login based on the token
+    function performLogin() {
+        const token = getTokenFromURL();
+
+        if (token) {
+            // Validate the token (you should perform server-side validation)
+            // For demonstration purposes, assume any non-empty token is valid
+            loginSuccess();
+        } else {
+            loginFailure();
+        }
+    }
+
+    // Function to handle successful login
+    function loginSuccess() {
+        document.getElementById("login-status").textContent = "Login Successful!";
+        // Redirect to the authenticated user's page or perform other actions
+    }
+
+    // Function to handle login failure
+    function loginFailure() {
+        document.getElementById("login-status").textContent = "Invalid or missing token. Login Failed.";
+    }
+
+    // Call the login function on page load
+    performLogin();
+</script>
+
 </body>
 </html>
