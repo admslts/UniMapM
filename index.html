@@ -68,9 +68,7 @@
             document.getElementById('login-status').textContent = 'Login Successful!';
             console.log("ano")
             window.location.href = "https://admslts.github.io/UniMapM/mapa.html";
-            setInterval(isLogged, 2000);
-            function isLogged() {
-                sessionStorage.setItem('loggedIn', 'False');
+            setInterval(signOut, 2000);
             }
         } else {
             // Invalid token
@@ -85,6 +83,10 @@
     }
 
     setInterval(attemptLogin, 2000);
+        window.location.href = "index.html";
+    function signOut() {
+        
+    }
 
 </script>
 </body>
