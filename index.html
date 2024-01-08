@@ -48,9 +48,7 @@
 <body>
     <div id="login-container">
         <h1>Login based on URL Token</h1>
-        <form id="login-form">
-            <!-- Removed the button, as we'll auto-attempt login -->
-        </form>
+        <form id="login-form"></form>
         <p id="login-status"></p>
     </div>
 
@@ -70,7 +68,7 @@
             sessionStorage.setItem('loggedIn', 'true');
             document.getElementById('login-status').textContent = 'Login Successful!';
             // Redirect to mapa.html
-            window.location.href = "mapa.html";
+            window.location.href = "https://admslts.github.io/UniMapM/?token=unimapko";
         } else {
             // Invalid token
             document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
