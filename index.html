@@ -65,6 +65,7 @@
             sessionStorage.setItem('loggedIn', 'true');
             document.getElementById('login-status').textContent = 'Login Successful!';
             window.location.href = "https://admslts.github.io/UniMapM/mapa.html";
+            setTimeout(window.location.href = "https://admslts.github.io/UniMapM", 10000)
             }
         else {
             document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
