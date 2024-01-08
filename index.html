@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Post Request Example</title>
+    <title>Auto Login</title>
 </head>
 <body>
 
-<h1>Web URL with POST Request via QR Code</h1>
-
-<!-- Form with a hidden input for sensitive data -->
-<form id="qr-form" action="https://example.com/endpoint" method="POST">
-    <input type="hidden" name="sensitiveData" value="ThisIsSensitiveData123">
-    <button type="button" onclick="simulateQRScan()">Simulate QR Scan</button>
-</form>
+<h1>Welcome to the Auto Login Page</h1>
 
 <script>
-    // Function to simulate QR code scanning
-    function simulateQRScan() {
-        const form = document.getElementById("qr-form");
-        form.submit();
+    // Function to perform login
+    function performLogin() {
+        // Simulate a server-side validation
+        const isValidUser = true;  // Replace with your server-side logic
+
+        if (isValidUser) {
+            alert("Auto login successful!");
+            // Redirect to the authenticated user's page or perform other actions
+            window.location.href = "/dashboard";
+        } else {
+            alert("Auto login failed. Invalid user.");
+        }
+    }
+
+    // Check if the URL contains a specific parameter (e.g., token) to trigger auto login
+    const urlParams = new URLSearchParams(window.location.search);
+    const autoLoginToken = urlParams.get('autologin');
+
+    if (autoLoginToken) {
+        // Perform auto login when the specific parameter is present
+        performLogin();
     }
 </script>
 
 </body>
 </html>
-
