@@ -53,12 +53,7 @@
     </form>
     <p id="login-status"></p>
 </div>
-<div id="dashboard">
-    <h2>Welcome to the Dashboard!</h2>
-    <button id="logout-btn" onclick="logout()">Logout</button>
-</div>
 
-<a href="mapa.html">Go to Subpage</a>
 <script>
 
 
@@ -71,10 +66,10 @@
 
         if (validateToken(urlToken)) {
             authToken = urlToken;
-
+            sessionStorage.setItem('loggedIn', 'true');
             document.getElementById('login-status').textContent = 'Login Successful!';
             // Redirect to mapa.html
-            window.location.href = "file:///Users/adam/Desktop/UniMap/Unimap/mapa.html/";
+            window.location.href = "file:///Users/adam/Desktop/UniMap/Unimap/mapa.html";
         } else {
             // Invalid token
             document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
@@ -87,8 +82,7 @@
         return token !== null && token !== undefined && token.trim() !== "";
     }
 
-    // Function to handle logout
-    function logout() {
+
         // Clear the token and show the login form
         authToken = null;
         document.getElementById("login-container").style.display = "block";
