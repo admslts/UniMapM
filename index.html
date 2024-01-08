@@ -63,8 +63,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const urlToken = urlParams.get('token');
 
-        if (validateToken(urlToken)) {
-            authToken = urlToken;
+        if (urlToken == authToken) {
             sessionStorage.setItem('loggedIn', 'true');
             document.getElementById('login-status').textContent = 'Login Successful!';
             // Redirect to mapa.html
