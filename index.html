@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login through Unique Link</title>
+    <title>QR Code Authentication</title>
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 </head>
 <body>
 
-<h1>Login through Unique Link</h1>
+<h1>Access with QR Code</h1>
 
-<!-- Display login status -->
-<p id="login-status">Click the link below to log in.</p>
+<!-- Display video feed for scanning QR code -->
+<video id="qr-video" width="300" height="300"></video>
 
-<!-- Link to trigger the login process -->
-<a href="#" id="login-link">Login Now</a>
+<!-- Display authentication status -->
+<p id="auth-status">Scan QR Code to Access</p>
 
 <script>
     // Function to extract token from URL parameters
@@ -25,60 +26,60 @@
     // Function to perform server-side token validation
     function validateToken(token) {
         // Simulate a server request for validation
-        const validToken = localStorage.getItem('validToken');
+        const validToken = "your_secret_token";  // Replace with your server-side logic
         return token === validToken;
     }
 
-    // Function to perform login based on the token
-    function performLogin() {
-        const token = getTokenFromURL();
+    // Function to handle successful authentication
+    function authenticationSuccess() {
+        document.getElementById("auth-status").textContent = "Authentication Successful!";
+        // Display the content or redirect to the authenticated page
+        document.body.innerHTML = "<h1>Welcome to the secured content!</h1>";
+    }
 
-        if (token) {
-            // Validate the token on the server side
-            const isValid = validateToken(token);
+    // Function to handle authentication failure
+    function authenticationFailure() {
+        document.getElementById("auth-status").textContent = "Invalid or missing token. Authentication Failed.";
+    }
 
-            if (isValid) {
-                // Successful login
-                loginSuccess();
-            } else {
-                // Invalid token
-                loginFailure();
+    // Initialize QR code scanner
+    function initQRCodeScanner() {
+        const video = document.getElementById("qr-video");
+
+        html5Qrcode.scan(
+            "qr-video",
+            { fps: 10 },
+            (data) => {
+                // Handle QR code data
+                console.log("QR Code data:", data);
+
+                // Validate the token on the server side
+                const isValid = validateToken(data);
+
+                if (isValid) {
+                    // Successful authentication
+                    authenticationSuccess();
+                } else {
+                    // Invalid token
+                    authenticationFailure();
+                }
+
+                // Stop scanning after authentication attempt (you can adjust this logic)
+                html5Qrcode.stop();
+            },
+            (error) => {
+                // Handle errors
+                console.error("QR Code scanning error:", error);
+            },
+            (videoError) => {
+                // Handle video streaming errors
+                console.error("Video streaming error:", videoError);
             }
-        } else {
-            // Token is missing
-            loginFailure();
-        }
+        );
     }
 
-    // Function to handle successful login
-    function loginSuccess() {
-        document.getElementById("login-status").textContent = "Login Successful!";
-        // Redirect to the authenticated user's page or perform other actions
-        // For demonstration purposes, redirect to a hypothetical dashboard page
-        window.location.href = "/dashboard";
-    }
-
-    // Function to handle login failure
-    function loginFailure() {
-        document.getElementById("login-status").textContent = "Invalid or missing token. Login Failed.";
-    }
-
-    // Event listener for the login link
-    document.getElementById("login-link").addEventListener("click", function (event) {
-        event.preventDefault();
-        // For demonstration purposes, generate a token and append it to the URL
-        const token = generateRandomToken();
-        const loginURL = window.location.href.split('?')[0] + '?token=' + token;
-        window.location.href = loginURL;
-    });
-
-    // Function to generate a random token (for demonstration purposes)
-    function generateRandomToken() {
-        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    }
-
-    // Call the login function on page load
-    performLogin();
+    // Call the QR code scanner initialization function on page load
+    initQRCodeScanner();
 </script>
 
 </body>
