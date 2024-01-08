@@ -3,43 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Authentication</title>
+    <title>Auto Login with QR Code</title>
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 </head>
 <body>
 
-<h1>Access with QR Code</h1>
+<h1>Auto Login with QR Code</h1>
 
 <!-- Display video feed for scanning QR code -->
 <video id="qr-video" width="300" height="300"></video>
 
-<!-- Display authentication status -->
-<p id="auth-status">Scan QR Code to Access</p>
+<!-- Display login status -->
+<p id="login-status">Scanning QR Code...</p>
 
 <script>
-    // Function to extract token from URL parameters
-    function getTokenFromURL() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('token');
-    }
-
     // Function to perform server-side token validation
     function validateToken(token) {
         // Simulate a server request for validation
-        const validToken = "your_secret_token";  // Replace with your server-side logic
+        const validToken = "your_secure_token";  // Replace with your server-side logic
         return token === validToken;
     }
 
-    // Function to handle successful authentication
-    function authenticationSuccess() {
-        document.getElementById("auth-status").textContent = "Authentication Successful!";
-        // Display the content or redirect to the authenticated page
-        document.body.innerHTML = "<h1>Welcome to the secured content!</h1>";
+    // Function to handle successful login
+    function loginSuccess() {
+        document.getElementById("login-status").textContent = "Login Successful!";
+        // Redirect to the authenticated user's page or perform other actions
+        setTimeout(function() {
+            window.location.href = "/dashboard";
+        }, 2000);  // Redirect after 2 seconds (for demonstration)
     }
 
-    // Function to handle authentication failure
-    function authenticationFailure() {
-        document.getElementById("auth-status").textContent = "Invalid or missing token. Authentication Failed.";
+    // Function to handle login failure
+    function loginFailure() {
+        document.getElementById("login-status").textContent = "Invalid or missing token. Login Failed.";
     }
 
     // Initialize QR code scanner
@@ -57,23 +53,25 @@
                 const isValid = validateToken(data);
 
                 if (isValid) {
-                    // Successful authentication
-                    authenticationSuccess();
+                    // Successful login
+                    loginSuccess();
                 } else {
                     // Invalid token
-                    authenticationFailure();
+                    loginFailure();
                 }
 
-                // Stop scanning after authentication attempt (you can adjust this logic)
+                // Stop scanning after login attempt (you can adjust this logic)
                 html5Qrcode.stop();
             },
             (error) => {
                 // Handle errors
                 console.error("QR Code scanning error:", error);
+                loginFailure();  // Treat scanning errors as login failures
             },
             (videoError) => {
                 // Handle video streaming errors
                 console.error("Video streaming error:", videoError);
+                loginFailure();  // Treat streaming errors as login failures
             }
         );
     }
