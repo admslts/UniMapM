@@ -10,7 +10,10 @@
 <h1>Login through Unique Link</h1>
 
 <!-- Display login status -->
-<p id="login-status">Click the link in your email to log in.</p>
+<p id="login-status">Click the link below to log in.</p>
+
+<!-- Link to trigger the login process -->
+<a href="#" id="login-link">Login Now</a>
 
 <script>
     // Function to extract token from URL parameters
@@ -19,15 +22,30 @@
         return urlParams.get('token');
     }
 
+    // Function to perform server-side token validation
+    function validateToken(token) {
+        // Simulate a server request for validation
+        const validToken = localStorage.getItem('validToken');
+        return token === validToken;
+    }
+
     // Function to perform login based on the token
     function performLogin() {
         const token = getTokenFromURL();
 
         if (token) {
-            // Validate the token (you should perform server-side validation)
-            // For demonstration purposes, assume any non-empty token is valid
-            loginSuccess();
+            // Validate the token on the server side
+            const isValid = validateToken(token);
+
+            if (isValid) {
+                // Successful login
+                loginSuccess();
+            } else {
+                // Invalid token
+                loginFailure();
+            }
         } else {
+            // Token is missing
             loginFailure();
         }
     }
@@ -36,11 +54,27 @@
     function loginSuccess() {
         document.getElementById("login-status").textContent = "Login Successful!";
         // Redirect to the authenticated user's page or perform other actions
+        // For demonstration purposes, redirect to a hypothetical dashboard page
+        window.location.href = "/dashboard";
     }
 
     // Function to handle login failure
     function loginFailure() {
         document.getElementById("login-status").textContent = "Invalid or missing token. Login Failed.";
+    }
+
+    // Event listener for the login link
+    document.getElementById("login-link").addEventListener("click", function (event) {
+        event.preventDefault();
+        // For demonstration purposes, generate a token and append it to the URL
+        const token = generateRandomToken();
+        const loginURL = window.location.href.split('?')[0] + '?token=' + token;
+        window.location.href = loginURL;
+    });
+
+    // Function to generate a random token (for demonstration purposes)
+    function generateRandomToken() {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
 
     // Call the login function on page load
