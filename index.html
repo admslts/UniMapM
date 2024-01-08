@@ -3,81 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Login with QR Code</title>
-    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <title>Password Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #login-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Auto Login with QR Code</h1>
+<div id="login-container">
+    <h1>Password Login</h1>
+    <form id="login-form">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
 
-<!-- Display video feed for scanning QR code -->
-<video id="qr-video" width="300" height="300"></video>
-
-<!-- Display login status -->
-<p id="login-status">Scanning QR Code...</p>
+        <button type="button" onclick="attemptLogin()">Login</button>
+    </form>
+    <p id="login-status"></p>
+</div>
 
 <script>
-    // Function to perform server-side token validation
-    function validateToken(token) {
-        // Simulate a server request for validation
-        const validToken = "your_secure_token";  // Replace with your server-side logic
-        return token === validToken;
+    // Simulated server-side password (replace with your actual server-side logic)
+    const validPassword = "securePassword123";
+
+    // Function to handle login attempt
+    function attemptLogin() {
+        const passwordInput = document.getElementById("password");
+        const loginStatus = document.getElementById("login-status");
+
+        const enteredPassword = passwordInput.value;
+
+        if (enteredPassword === validPassword) {
+            // Successful login
+            loginStatus.textContent = "Login Successful!";
+            loginStatus.style.color = "green";
+            // Redirect to the authenticated user's page or perform other actions
+            setTimeout(function() {
+                window.location.href = "/dashboard";
+            }, 2000);  // Redirect after 2 seconds (for demonstration)
+        } else {
+            // Invalid password
+            loginStatus.textContent = "Invalid password. Login Failed.";
+            loginStatus.style.color = "red";
+        }
     }
-
-    // Function to handle successful login
-    function loginSuccess() {
-        document.getElementById("login-status").textContent = "Login Successful!";
-        // Redirect to the authenticated user's page or perform other actions
-        setTimeout(function() {
-            window.location.href = "/dashboard";
-        }, 2000);  // Redirect after 2 seconds (for demonstration)
-    }
-
-    // Function to handle login failure
-    function loginFailure() {
-        document.getElementById("login-status").textContent = "Invalid or missing token. Login Failed.";
-    }
-
-    // Initialize QR code scanner
-    function initQRCodeScanner() {
-        const video = document.getElementById("qr-video");
-
-        html5Qrcode.scan(
-            "qr-video",
-            { fps: 10 },
-            (data) => {
-                // Handle QR code data
-                console.log("QR Code data:", data);
-
-                // Validate the token on the server side
-                const isValid = validateToken(data);
-
-                if (isValid) {
-                    // Successful login
-                    loginSuccess();
-                } else {
-                    // Invalid token
-                    loginFailure();
-                }
-
-                // Stop scanning after login attempt (you can adjust this logic)
-                html5Qrcode.stop();
-            },
-            (error) => {
-                // Handle errors
-                console.error("QR Code scanning error:", error);
-                loginFailure();  // Treat scanning errors as login failures
-            },
-            (videoError) => {
-                // Handle video streaming errors
-                console.error("Video streaming error:", videoError);
-                loginFailure();  // Treat streaming errors as login failures
-            }
-        );
-    }
-
-    // Call the QR code scanner initialization function on page load
-    initQRCodeScanner();
 </script>
 
 </body>
