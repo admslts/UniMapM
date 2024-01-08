@@ -1,83 +1,58 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="Style/style.css">
+    <title>QR Code Login</title>
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 </head>
 <body>
-    <div id="header">
-        <img id="logo" src="Images/Logo/UNIMAP.png">
-        <div id="menu">
-        </div>
-    </div>
 
-    <div id="map-box">
-        <div id="app">
-            <label for="first-menu">Kde sa nachádzam:</label>
-            <select id="first-menu">
-                <option value="1.A">1.A</option>
-                <option value="2.A">2.A</option>
-                <option value="3.A">3.A</option>
-                <option value="4.A">4.A</option>
-                <option value="1.AB">1.AB</option>
-                <option value="1.BB">1.BB</option>
-                <option value="2.AB">2.AB</option>
-                <option value="2.BB">2.BB</option>
-                <option value="3.AB">3.AB</option>
-                <option value="3.BB">3.BB</option>
-                <option value="4.AB">4.AB</option>
-                <option value="4.BB">4.BB</option>
-                <option value="5.AB">5.AB</option>
-                <option value="5.BB">5.BB</option>
-                <option value="1.OA">1.OA</option>
-                <option value="2.OA">2.OA</option>
-                <option value="3.OA">3.OA</option>
-                <option value="4.OA">4.OA</option>
-                <option value="5.OA">5.OA</option>
-                <option value="6.OA">6.OA</option>
-                <option value="7.OA">7.OA</option>
-                <option value="8.OA">8.OA</option>
-                <option value="8.OB">8.OB</option>
-                <option value="VRÁTNICA">VRÁTNICA</option>
-            </select>
+<h1>QR Code Login</h1>
 
-            <label for="second-menu">Kde chcem ísť:</label>
-            <select id="second-menu">
-                <option value="1.A">1.A</option>
-                <option value="2.A">2.A</option>
-                <option value="3.A">3.A</option>
-                <option value="4.A">4.A</option>
-                <option value="1.AB">1.AB</option>
-                <option value="1.BB">1.BB</option>
-                <option value="2.AB">2.AB</option>
-                <option value="2.BB">2.BB</option>
-                <option value="3.AB">3.AB</option>
-                <option value="3.BB">3.BB</option>
-                <option value="4.AB">4.AB</option>
-                <option value="4.BB">4.BB</option>
-                <option value="5.AB">5.AB</option>
-                <option value="5.BB">5.BB</option>
-                <option value="1.OA">1.OA</option>
-                <option value="2.OA">2.OA</option>
-                <option value="3.OA">3.OA</option>
-                <option value="4.OA">4.OA</option>
-                <option value="5.OA">5.OA</option>
-                <option value="6.OA">6.OA</option>
-                <option value="7.OA">7.OA</option>
-                <option value="8.OA">8.OA</option>
-                <option value="8.OB">8.OB</option>
-                <option value="VRÁTNICA">VRÁTNICA</option>
-            </select>
+<!-- Display video feed for scanning QR code -->
+<video id="qr-video" width="300" height="300"></video>
 
-            <button onclick="selectImage()">NAVIGUJ</button>
-            
-            <div id="map">
-                <img id="selected-image" src="" alt="VYBER TRASU">
-            </div>
-        </div>
-    </div>
-    
-    <script src="app.js"></script>
+<!-- Display login status -->
+<p id="login-status">Scan QR Code to Log In</p>
+
+<script>
+    // Function to handle successful login
+    function loginSuccess() {
+        document.getElementById("login-status").textContent = "Login Successful!";
+    }
+
+    // Initialize QR code scanner
+    function initQRCodeScanner() {
+        const video = document.getElementById("qr-video");
+
+        html5Qrcode.scan(
+            "qr-video",
+            { fps: 10 },
+            (data) => {
+                // Handle QR code data (e.g., authenticate the user)
+                console.log("QR Code data:", data);
+                
+                // Assume a successful login for demonstration purposes
+                loginSuccess();
+                
+                // Stop scanning after successful login (you can adjust this logic)
+                html5Qrcode.stop();
+            },
+            (error) => {
+                // Handle errors
+                console.error("QR Code scanning error:", error);
+            },
+            (videoError) => {
+                // Handle video streaming errors
+                console.error("Video streaming error:", videoError);
+            }
+        );
+    }
+
+    // Call the QR code scanner initialization function
+    initQRCodeScanner();
+</script>
+
 </body>
 </html>
