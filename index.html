@@ -3,85 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        #login-container {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #login-form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        input {
-            margin-bottom: 10px;
-            padding: 8px;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <title>QR Code Post Request Example</title>
 </head>
 <body>
 
-<div id="login-container">
-    <h1>Password Login</h1>
-    <form id="login-form">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+<h1>Web URL with POST Request via QR Code</h1>
 
-        <button type="button" onclick="attemptLogin()">Login</button>
-    </form>
-    <p id="login-status"></p>
-</div>
+<!-- Form with a hidden input for sensitive data -->
+<form id="qr-form" action="https://example.com/endpoint" method="POST">
+    <input type="hidden" name="sensitiveData" value="ThisIsSensitiveData123">
+    <button type="button" onclick="simulateQRScan()">Simulate QR Scan</button>
+</form>
 
 <script>
-    // Simulated server-side password (replace with your actual server-side logic)
-    const validPassword = "securePassword123";
-
-    // Function to handle login attempt
-    function attemptLogin() {
-        const passwordInput = document.getElementById("password");
-        const loginStatus = document.getElementById("login-status");
-
-        const enteredPassword = passwordInput.value;
-
-        if (enteredPassword === validPassword) {
-            // Successful login
-            loginStatus.textContent = "Login Successful!";
-            loginStatus.style.color = "green";
-            // Redirect to the authenticated user's page or perform other actions
-            setTimeout(function() {
-                window.location.href = "/dashboard";
-            }, 2000);  // Redirect after 2 seconds (for demonstration)
-        } else {
-            // Invalid password
-            loginStatus.textContent = "Invalid password. Login Failed.";
-            loginStatus.style.color = "red";
-        }
+    // Function to simulate QR code scanning
+    function simulateQRScan() {
+        const form = document.getElementById("qr-form");
+        form.submit();
     }
 </script>
 
 </body>
 </html>
+
