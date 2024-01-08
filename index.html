@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Trigger User Login</title>
+    <title>Auto Login through Link</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,7 +42,16 @@
             background-color: #45a049;
         }
 
-        #login-link {
+        #dashboard {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #logout-btn {
+            background-color: #f44336;
+        }
+
+        #auto-login-link {
             color: blue;
             text-decoration: underline;
             cursor: pointer;
@@ -52,7 +61,7 @@
 <body>
 
 <div id="login-container">
-    <h1>User Login</h1>
+    <h1>Auto Login through Link</h1>
     <form id="login-form">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -65,9 +74,16 @@
     <p id="login-status"></p>
 </div>
 
-<p id="login-link" onclick="triggerLogin()">Click here to trigger login</p>
+<div id="dashboard">
+    <h2>Welcome to the Dashboard!</h2>
+    <button id="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<p id="auto-login-link" onclick="autoLogin()">Click here for auto-login</p>
 
 <script>
+    let authToken;
+
     // Simulated user credentials (replace with your actual authentication logic)
     const validUsername = "user123";
     const validPassword = "pass123";
@@ -82,13 +98,16 @@
         const enteredPassword = passwordInput.value;
 
         if (enteredUsername === validUsername && enteredPassword === validPassword) {
-            // Successful login
+            // Simulate server-side token generation upon successful login
+            authToken = generateToken();
+
+            // Hide login form and display dashboard
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+
+            // Display welcome message
             loginStatus.textContent = "Login Successful!";
             loginStatus.style.color = "green";
-            // Redirect to the authenticated user's page or perform other actions
-            setTimeout(function() {
-                window.location.href = "/dashboard";
-            }, 2000);  // Redirect after 2 seconds (for demonstration)
         } else {
             // Invalid credentials
             loginStatus.textContent = "Invalid username or password. Login Failed.";
@@ -96,9 +115,30 @@
         }
     }
 
-    // Function to trigger login when link is clicked
-    function triggerLogin() {
-        attemptLogin();
+    // Function to generate a simple token (replace with your actual token generation logic)
+    function generateToken() {
+        return Math.random().toString(36).substring(2);
+    }
+
+    // Function to handle logout
+    function logout() {
+        // Clear the token and show the login form
+        authToken = null;
+        document.getElementById("login-container").style.display = "block";
+        document.getElementById("dashboard").style.display = "none";
+    }
+
+    // Function to perform auto-login when the link is clicked
+    function autoLogin() {
+        // Simulate a token provided in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const autoLoginToken = urlParams.get('autologin');
+
+        if (autoLoginToken) {
+            // Perform auto-login when the specific parameter is present
+            authToken = autoLoginToken;
+            document.getElementById("dashboard").style.display = "block";
+        }
     }
 </script>
 
