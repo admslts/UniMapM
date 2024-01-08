@@ -3,34 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Login</title>
+    <title>Link Trigger User Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #login-container {
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #login-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Welcome to the Auto Login Page</h1>
+<div id="login-container">
+    <h1>User Login</h1>
+    <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="attemptLogin()">Login</button>
+    </form>
+    <p id="login-status"></p>
+</div>
+
+<p id="login-link" onclick="triggerLogin()">Click here to trigger login</p>
 
 <script>
-    // Function to perform login
-    function performLogin() {
-        // Simulate a server-side validation
-        const isValidUser = true;  // Replace with your server-side logic
+    // Simulated user credentials (replace with your actual authentication logic)
+    const validUsername = "user123";
+    const validPassword = "pass123";
 
-        if (isValidUser) {
-            alert("Auto login successful!");
+    // Function to handle login attempt
+    function attemptLogin() {
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const loginStatus = document.getElementById("login-status");
+
+        const enteredUsername = usernameInput.value;
+        const enteredPassword = passwordInput.value;
+
+        if (enteredUsername === validUsername && enteredPassword === validPassword) {
+            // Successful login
+            loginStatus.textContent = "Login Successful!";
+            loginStatus.style.color = "green";
             // Redirect to the authenticated user's page or perform other actions
-            window.location.href = "/dashboard";
+            setTimeout(function() {
+                window.location.href = "/dashboard";
+            }, 2000);  // Redirect after 2 seconds (for demonstration)
         } else {
-            alert("Auto login failed. Invalid user.");
+            // Invalid credentials
+            loginStatus.textContent = "Invalid username or password. Login Failed.";
+            loginStatus.style.color = "red";
         }
     }
 
-    // Check if the URL contains a specific parameter (e.g., token) to trigger auto login
-    const urlParams = new URLSearchParams(window.location.search);
-    const autoLoginToken = urlParams.get('autologin');
-
-    if (autoLoginToken) {
-        // Perform auto login when the specific parameter is present
-        performLogin();
+    // Function to trigger login when link is clicked
+    function triggerLogin() {
+        attemptLogin();
     }
 </script>
 
