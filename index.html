@@ -57,6 +57,8 @@
     <h2>Welcome to the Dashboard!</h2>
     <button id="logout-btn" onclick="logout()">Logout</button>
 </div>
+
+<a href="mapa.html">Go to Subpage</a>
 <script>
 
 
@@ -66,23 +68,25 @@
         // Simulate server-side token validation based on URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         const urlToken = urlParams.get('token');
+
         if (validateToken(urlToken)) {
             authToken = urlToken;
-            // Hide login form and display dashboard
-            document.getElementById("login-container").style.display = "none";
-            document.getElementById("dashboard").style.display = "block";
-            // Display welcome message
-            document.getElementById("login-status").textContent = "Login Successful!";
+
+            document.getElementById('login-status').textContent = 'Login Successful!';
+            // Redirect to mapa.html
+            window.location.href = "file:///Users/adam/Desktop/UniMap/Unimap/mapa.html/";
         } else {
             // Invalid token
             document.getElementById("login-status").textContent = "Invalid token. Login Failed.";
         }
     }
+
     // Function to validate the token (replace with your actual token validation logic)
     function validateToken(token) {
         // Simulate token validation (in a real-world scenario, this should be done on the server side)
         return token !== null && token !== undefined && token.trim() !== "";
     }
+
     // Function to handle logout
     function logout() {
         // Clear the token and show the login form
