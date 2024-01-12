@@ -14,4 +14,4 @@
     }
 
 
-    setInterval(attemptLogin, 2000);
+    setInterval(attemptLogin, 1000);
