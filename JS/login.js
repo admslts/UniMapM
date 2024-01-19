@@ -6,7 +6,7 @@
         if (urlToken == authToken) {
             sessionStorage.setItem('loggedIn', 'true');
             document.getElementById('login-status').textContent = 'Prihlásenie úspešné';
-            window.location.href = "unimap.sk/?token=bHdl106R0dlBJnA5XWjA";
+            window.location.href = "http://unimap.sk/?token=bHdl106R0dlBJnA5XWjA";
             }
         else {
             document.getElementById("login-status").textContent = "Naskenujte QR kód svojim telefónom";
