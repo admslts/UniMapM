@@ -1,4 +1,4 @@
-    authToken = "uni"
+    authToken = "bHdl106R0dlBJnA5XWjA"
     function attemptLogin() {
         const urlParams = new URLSearchParams(window.location.search);
         const urlToken = urlParams.get('token');
