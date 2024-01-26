@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Oswald', sans-serif;
+    font-size: 5vw;
     margin: 0;
     box-sizing: border-box;
     width: 100%;
@@ -15,7 +16,7 @@ body {
 }
 
 #logo{
-    width: 80px;
+    width: 70px;
 }
 
 #app {
@@ -28,8 +29,27 @@ body {
     width: 100%;
 }
 
+#menu-class{
+    display: flex;
+    padding-left: 10vw;
+    padding-top: 1vw;
+    padding-right: 10vw;
+}
+
+label{
+    text-align: left;
+    white-space: nowrap;
+}
+
+#first-menu, #second-menu{
+    border: 2px solid black;
+    border-radius: 4px;
+    width: 100%;
+}
+
 select, button {
     margin: 10px;
+    font-family: 'Oswald', sans-serif;
 }
 
 #selected-image {
