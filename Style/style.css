@@ -60,6 +60,7 @@ button {
     font-size: 5vw;
     background-color: rgb(226, 220, 202);
     border-radius: 12px;
+    text-decoration: none;
 }
 
 #selected-image {
