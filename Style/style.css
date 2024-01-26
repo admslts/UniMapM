@@ -1,6 +1,5 @@
 body {
     font-family: 'Oswald', sans-serif;
-    font-size: 5vw;
     margin: 0;
     box-sizing: border-box;
     width: 100%;
@@ -39,12 +38,14 @@ body {
 label{
     text-align: left;
     white-space: nowrap;
+    font-size: 5vw;
 }
 
 #first-menu, #second-menu{
     border: 2px solid black;
     border-radius: 4px;
     width: 100%;
+    font-size: 5vw;
 }
 
 select, button {
