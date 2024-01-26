@@ -1,5 +1,6 @@
 body {
     font-family: 'Oswald', sans-serif;
+    font-size: 5vw;
     margin: 0;
     box-sizing: border-box;
     width: 100%;
@@ -38,18 +39,26 @@ body {
 label{
     text-align: left;
     white-space: nowrap;
-    font-size: 5vw;
 }
 
 #first-menu, #second-menu{
+    font-family: 'Oswald', sans-serif;
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 4px;
     width: 100%;
+    font-size: 3vw;
+    color: black;
+    background-color: white;
+    margin-left: 10px;
 }
 
-select, button {
+button {
+    padding: 8px, 10px, 8px, 10px;
     margin: 10px;
     font-family: 'Oswald', sans-serif;
+    font-size: 5vw;
+    background-color: rgb(226, 220, 202);
+    border-radius: 12px;
 }
 
 #selected-image {
