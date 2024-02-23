@@ -15,7 +15,7 @@ function selectImage() {
 }
 
 function getImagePath(selectedValue1, selectedValue2) {
-    var imagePath = "Images/" + selectedValue1 + ',' + selectedValue2 + '.jpg';
+    var imagePath = "Images/" + selectedValue1 + ',' + selectedValue2 + '.pdf';
 
     // Don't forget to return the imagePath
     return imagePath;
