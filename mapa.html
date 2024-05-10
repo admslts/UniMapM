@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -22,14 +21,15 @@
     </div>
 
     <div id="map">
-        <img id="selected-image" class="selected-image" src="" alt="">
+        <img id="selected-image" src="" alt="">
     </div>
 
     <div id="map-box">
         <div id="app">
             <div id="menu-class">
+                <label for="first-menu">Kde sa nachádzam:</label>
                 <select id="first-menu">
-                    <option value="VYBER">KDE SA NACHÁDZAM:</option>
+                    <option value="VYBER">VYBER MOŽNOSŤ</option>
                     <option value="1.A">1.A</option>
                     <option value="2.A">2.A</option>
                     <option value="3.A">3.A</option>
@@ -64,8 +64,9 @@
             </div>
 
             <div id="menu-class">
+                <label for="second-menu">Kam chcem ísť:</label>
                 <select id="second-menu">
-                    <option value="VYBER">KAM CHCEM ÍSŤ:</option>
+                    <option value="VYBER">VYBER MOŽNOSŤ</option>
                     <option value="1.A">1.A</option>
                     <option value="2.A">2.A</option>
                     <option value="3.A">3.A</option>
@@ -105,17 +106,5 @@
     </div>
     
     <script src="JS/app.js"></script>
-
-    <div style="margin-top: 20px;">
-        <img src="Images/Untitled-1.png" alt="" style="max-width: 100%;">
-    </div>
-
-    <footer>
-        <div>
-            <p style="display: inline-block; font-size: 15px;">2024 UniMap všetky práva vyhradené</p>
-            <a href="https://www.instagram.com/unimap.gt12?igsh=MXh2ZWNhaTN0YmprMA==" class="fa fa-instagram"></a>
-        </div>
-    </footer>
-
 </body>
 </html>
