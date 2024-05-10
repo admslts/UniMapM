@@ -62,12 +62,6 @@ button {
     text-decoration: none;
 }
 
-.selected-image {
-    max-width: 100%;
-    height: 0%;
-    transition: all 1s ease;
-}
-
 #map{
     padding: 10px;
     box-sizing: border-box;
