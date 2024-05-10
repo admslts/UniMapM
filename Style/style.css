@@ -62,6 +62,10 @@ button {
     text-decoration: none;
 }
 
+#selected-image {
+    max-width: 100%;
+}
+
 #map{
     padding: 10px;
     box-sizing: border-box;
