@@ -51,7 +51,7 @@ label{
     background-color: white;
 }
 
-button {
+.button {
     padding: 8px, 10px, 8px, 10px;
     margin: 10px;
     width: 80%;
